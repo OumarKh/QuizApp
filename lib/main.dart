@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screens/test_screen.dart'; // Import your TestScreen
 
 void main() {
-  runApp(const MainApp());
+  runApp(MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      title: 'Quiz App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: TestScreen(), // Navigate to the test screen
     );
   }
 }
