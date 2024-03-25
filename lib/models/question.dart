@@ -2,7 +2,7 @@
 
 class Question{
   final String question ;
-  final List<String> options;
+  final List<dynamic> options;
   final int correctAns;
 
   Question({required this.question,required this.options,required this.correctAns});
@@ -10,7 +10,7 @@ class Question{
   factory Question.fromJson(Map<String, dynamic> json){
     return Question(
       question: json['question'],
-      options: List<String>.from(json['options']),
+      options: json['options'],
       correctAns: json['answer'],
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/models/question.dart';
-import 'package:quiz_app/repositories/quiz_repository.dart';
+import 'package:quiz_app/models/question.dart'; // importing the question model
+import 'package:quiz_app/repositories/quiz_repository.dart'; // importing the logic of loading the question from json
+import 'package:quiz_app/widgets/question_widget.dart'; //importing the question widget
+
 
 class TestScreen extends StatefulWidget {
   @override
@@ -9,6 +11,7 @@ class TestScreen extends StatefulWidget {
 
 class _TestScreenState extends State<TestScreen> {
   List<Question> questions = [];
+  int _score = 0;
 
   @override
   void initState() {
@@ -23,6 +26,13 @@ class _TestScreenState extends State<TestScreen> {
     });
   }
 
+  // a function to update the score if the answer is correct
+  void updateScore(bool isCorrect){
+    setState(() {
+      _score += isCorrect ? 10:0;
+    });
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -32,14 +42,30 @@ class _TestScreenState extends State<TestScreen> {
       body: questions.isEmpty
       ? Center(
         child: CircularProgressIndicator(),
-      ) : ListView.builder(
-        itemCount: questions.length,
-        itemBuilder: (context, index){
-          return ListTile(
-            title: Text(questions[index].question),
-            subtitle: Text('Options: ${questions[index].options.join(',')}'),
-          );
+      ) : questionScreen( 
+        question: questions[0], 
+        onOptionSelected: (index){
+          bool isCorrect = index == questions[0].correctAns;
+          updateScore(isCorrect);
+          setState(() {
+            questions.removeAt(0);
+          });
+
         },
+      ),
+
+      // showing the score at the bottom of the screen 
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          height: 50,
+          child: Center(
+            child: Text(
+              'Score: $_score',
+              style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+
+            )
+          )
+        )
       ),
     );
   }

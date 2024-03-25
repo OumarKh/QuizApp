@@ -35,13 +35,8 @@
         "answer": 0
     },
     {
-        "question": "Quelle propriété CSS est utilisée pour définir la taille de la police de caractères ?", 
-        "options": ["text-size", "size", "font", "font-size"], 
-        "answer": 3
-    },
-    {
-        "question": "Quelle propriété CSS est utilisée pour afficher un élément en ligne avec les autres éléments ?", 
-        "options": ["display: inline;", "position: inline;", "align: inline;", "layout: inline;"], 
-        "answer": 0
+        "question":"question1",
+        "options":["answer1","answer2","answer3","answer4"],
+        "answer":3
     }
 ]
