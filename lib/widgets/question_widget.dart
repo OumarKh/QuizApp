@@ -1,49 +1,100 @@
-//this file serves as a widget to present the question and its options
-//a reusable component so we only create it once and use it multiple times across the app
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/models/question.dart';
 
-class questionScreen extends StatelessWidget{
+class questionScreen extends StatefulWidget {
   final Question question;
   final Function(int) onOptionSelected;
-  questionScreen({
+
+  const questionScreen({
     required this.question,
     required this.onOptionSelected,
   });
-//this widget here is where the question will be displayed
+
   @override
-  Widget build(BuildContext context){
+  _QuestionScreenState createState() => _QuestionScreenState();
+}
+
+class _QuestionScreenState extends State<questionScreen> {
+  late Timer _timer;
+  int _secondsRemaining = 10; // Change it to whatever duration you want
+
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  void startTimer() {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_secondsRemaining > 0) {
+          _secondsRemaining--;
+        } else {
+          _timer.cancel();
+          widget.onOptionSelected(-1); 
+        }
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  //restarting the timer on each question
+  @override
+  void didUpdateWidget(covariant questionScreen oldWidget){
+    super.didUpdateWidget(oldWidget);
+    if(widget.question != oldWidget.question){
+      _secondsRemaining = 10;
+      startTimer();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Quiz'),
       ),
-      body:Padding(
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child:Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              question.question,
+              widget.question.question,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(height: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: question.options
-              .asMap()
-              .entries
-              .map((entry) => _buildOptionButton(entry.key,entry.value))
-              .toList(),
+              children: widget.question.options
+                  .asMap()
+                  .entries
+                  .map((entry) => _buildOptionButton(entry.key, entry.value))
+                  .toList(),
             ),
+            SizedBox(height: 20),
+            Text('Time Remaining: $_secondsRemaining seconds'),
           ],
         ),
       ),
     );
   }
-// this widget is the button with which the answer will be submitted
-  Widget _buildOptionButton(int index, String option){
+
+  Widget _buildOptionButton(int index, String option) {
     return ElevatedButton(
-      onPressed: () => onOptionSelected(index),
-      child: Text(option));
+      onPressed: () {
+        // Stop the timer when the user selects an option
+        _timer.cancel();
+        // Pass the selected option index to the callback function
+        widget.onOptionSelected(index);
+      },
+      child: Text(option),
+    );
   }
 }

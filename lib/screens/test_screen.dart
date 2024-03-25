@@ -13,7 +13,6 @@ class TestScreen extends StatefulWidget {
 
 class _TestScreenState extends State<TestScreen> {
   List<Question> questions = [];
-  int _score = 0;
   late User user;
 
   @override
@@ -22,6 +21,7 @@ class _TestScreenState extends State<TestScreen> {
     user = User(f_name: "Jhon", l_name: "Neon", email: "john@example.com");
     loadQuestions();
   }
+  //loading the question from the json file
   Future<void> loadQuestions() async {
     QuizRepository quizRepository = QuizRepository();
     List<Question> loadedQuestions = await quizRepository.getQuestionFromJson();
@@ -33,7 +33,7 @@ class _TestScreenState extends State<TestScreen> {
   // a function to update the score if the answer is correct
   void updateScore(bool isCorrect){
     setState(() {
-      user.addScore(isCorrect ? 10 : 0);
+      user.addScore(isCorrect ? 10 : 0,isCorrect);
     });
   }
 
@@ -58,9 +58,7 @@ class _TestScreenState extends State<TestScreen> {
       ) : questionScreen( 
         question: questions[0], 
         onOptionSelected: (index){
-           print('Selected option index: $index');
           bool isCorrect = index == questions[0].correctAns;
-          print('Is correct answer: $isCorrect');
           updateScore(isCorrect);
           setState(() {
             questions.removeAt(0);
@@ -78,7 +76,7 @@ class _TestScreenState extends State<TestScreen> {
           height: 50,
           child: Center(
             child: Text(
-              'Name : ${user.f_name} ${user.l_name}, Score: $_score',
+              'Name : ${user.f_name} ${user.l_name}, Score: ${user.calculateTotalScore()}',
               style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
 
             )
