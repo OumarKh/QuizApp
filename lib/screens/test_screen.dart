@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/models/question.dart'; // importing the question model
 import 'package:quiz_app/repositories/quiz_repository.dart'; // importing the logic of loading the question from json
 import 'package:quiz_app/widgets/question_widget.dart'; //importing the question widget
+import 'package:quiz_app/models/user.dart'; //importing the user model 
+import 'package:quiz_app/screens/result_screen.dart'; //importing the result screen
 
 
 class TestScreen extends StatefulWidget {
@@ -12,10 +14,12 @@ class TestScreen extends StatefulWidget {
 class _TestScreenState extends State<TestScreen> {
   List<Question> questions = [];
   int _score = 0;
+  late User user;
 
   @override
   void initState() {
     super.initState();
+    user = User(f_name: "Jhon", l_name: "Neon", email: "john@example.com");
     loadQuestions();
   }
   Future<void> loadQuestions() async {
@@ -29,8 +33,17 @@ class _TestScreenState extends State<TestScreen> {
   // a function to update the score if the answer is correct
   void updateScore(bool isCorrect){
     setState(() {
-      _score += isCorrect ? 10:0;
+      user.addScore(isCorrect ? 10 : 0);
     });
+  }
+
+  //to navigate the result screen 
+  void navigateToResultScreen(){
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => ResultScreen(user: user),
+      ),
+    );
   }
 
   @override
@@ -45,10 +58,15 @@ class _TestScreenState extends State<TestScreen> {
       ) : questionScreen( 
         question: questions[0], 
         onOptionSelected: (index){
+           print('Selected option index: $index');
           bool isCorrect = index == questions[0].correctAns;
+          print('Is correct answer: $isCorrect');
           updateScore(isCorrect);
           setState(() {
             questions.removeAt(0);
+            if (questions.isEmpty){
+              navigateToResultScreen();
+            }
           });
 
         },
@@ -60,7 +78,7 @@ class _TestScreenState extends State<TestScreen> {
           height: 50,
           child: Center(
             child: Text(
-              'Score: $_score',
+              'Name : ${user.f_name} ${user.l_name}, Score: $_score',
               style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
 
             )
