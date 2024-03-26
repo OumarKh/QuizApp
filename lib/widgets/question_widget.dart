@@ -59,6 +59,12 @@ class _QuestionScreenState extends State<questionScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Quiz'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Time: $_secondsRemaining'),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -78,8 +84,6 @@ class _QuestionScreenState extends State<questionScreen> {
                   .map((entry) => _buildOptionButton(entry.key, entry.value))
                   .toList(),
             ),
-            SizedBox(height: 20),
-            Text('Time Remaining: $_secondsRemaining seconds'),
           ],
         ),
       ),
