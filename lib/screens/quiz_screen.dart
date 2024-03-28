@@ -7,6 +7,17 @@ import 'package:quiz_app/screens/result_screen.dart'; //importing the result scr
 
 
 class TestScreen extends StatefulWidget {
+
+  final String f_name ;
+  final String l_name ;
+  final String email ;
+
+  TestScreen({
+    required this.f_name,
+    required this.l_name,
+    required this.email
+  });
+
   @override
   _TestScreenState createState() => _TestScreenState();
 }
@@ -18,7 +29,7 @@ class _TestScreenState extends State<TestScreen> {
   @override
   void initState() {
     super.initState();
-    user = User(f_name: "Jhon", l_name: "Neon", email: "john@example.com");
+    user = User(f_name: widget.f_name, l_name: widget.l_name, email: widget.email);
     loadQuestions();
   }
   //loading the question from the json file

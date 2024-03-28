@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/screens/test_screen.dart'; // Import your TestScreen
+import 'package:quiz_app/screens/home_screen.dart'; // Import your TestScreen
 
 void main() {
   runApp(MyApp());
@@ -12,9 +12,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Quiz App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
+        bottomSheetTheme: 
+        const BottomSheetThemeData(backgroundColor: Colors.transparent),
       ),
-      home: TestScreen(), // Navigate to the test screen
+      home: HomePage(), // Navigate to the test screen
     );
   }
 }
