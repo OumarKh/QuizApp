@@ -57,7 +57,9 @@ class _QuestionScreenState extends State<questionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(212, 160, 233, 253),
       appBar: AppBar(
+        backgroundColor:Color.fromARGB(212, 160, 233, 253),
         automaticallyImplyLeading: false,
         actions: [
           Padding(

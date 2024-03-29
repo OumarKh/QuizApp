@@ -60,6 +60,7 @@ class _TestScreenState extends State<TestScreen> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      backgroundColor:Color.fromARGB(212, 160, 233, 253),
       appBar: AppBar(
         elevation: 4,
         centerTitle: true,
@@ -98,7 +99,7 @@ class _TestScreenState extends State<TestScreen> {
       bottomNavigationBar: BottomAppBar(
         color:Color(0xff04a9fd) ,
         child: Container(
-          height: 20,
+          height:20,
           child: Center(
             child: Text(
               '${user.f_name} ${user.l_name}, Score: ${user.calculateTotalScore()}',

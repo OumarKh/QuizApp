@@ -24,7 +24,7 @@ class ResultScreen extends StatelessWidget{
 
     //the layout of the screen
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: Color.fromARGB(212, 160, 233, 253),
       appBar: AppBar(
         elevation: 4,
         centerTitle: true,
