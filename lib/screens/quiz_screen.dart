@@ -61,7 +61,20 @@ class _TestScreenState extends State<TestScreen> {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title:Text('Test Screen'),
+        elevation: 4,
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        backgroundColor:Color(0xff01a8fe),
+        shape:RoundedRectangleBorder(
+          borderRadius: BorderRadius.zero,
+        ),
+        title:Text('Quiz App',
+        style: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontStyle: FontStyle.normal,
+          fontSize: 17,
+          color: Color(0xff000000),
+        )),
       ),
       body: questions.isEmpty
       ? Center(
@@ -83,12 +96,13 @@ class _TestScreenState extends State<TestScreen> {
 
       // showing the score at the bottom of the screen 
       bottomNavigationBar: BottomAppBar(
+        color:Color(0xff04a9fd) ,
         child: Container(
-          height: 50,
+          height: 20,
           child: Center(
             child: Text(
-              'Name : ${user.f_name} ${user.l_name}, Score: ${user.calculateTotalScore()}',
-              style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+              '${user.f_name} ${user.l_name}, Score: ${user.calculateTotalScore()}',
+              style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
 
             )
           )

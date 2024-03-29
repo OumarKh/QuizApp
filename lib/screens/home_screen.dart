@@ -63,34 +63,216 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Quiz App'),
+     backgroundColor: Color(0xffffffff),
+     appBar: AppBar(
+      elevation: 4,
+      centerTitle: true,
+      automaticallyImplyLeading: false,
+      backgroundColor: Color(0xff01a8fe),
+      shape:RoundedRectangleBorder(
+        borderRadius: BorderRadius.zero,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      title: Text(
+        "Quiz App",
+        style: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontStyle: FontStyle.normal,
+          fontSize: 17,
+          color: Color(0xff000000),
+        ),
+        ),
+     ),
+
+     body: Align(
+      alignment: Alignment.topLeft,
+      child: Container(
+        margin:EdgeInsets.all(0),
+        padding:EdgeInsets.all(0),
+        width:MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          color: Color(0xffcdf5fd),
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.zero,
+          border:Border.all(color:Color(0x4d9e9e9e),width:1),
+        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           children: [
-            TextField(
-              controller: _f_nameController,
-              decoration: InputDecoration(labelText: 'First Name'),
+            Padding(
+              padding:EdgeInsets.fromLTRB(20,0,20,20),
+              child:TextField(
+                controller: _f_nameController,
+                obscureText: false,
+                textAlign: TextAlign.start,
+                maxLines: 1,
+                style:TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                  fontSize: 14,
+                  color:Color(0xff000000),
+                ),
+                decoration: InputDecoration(
+                  disabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Color(0xff04a9fd),
+                      width:1
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Color(0xff04a9fd),
+                      width:1
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Color(0xff04a9fd),
+                      width:1
+                    ),
+                  ),
+                  hintText:"First Name",
+                  hintStyle: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize:14,
+                    color:Color(0xff000000),
+                  ),
+                  filled: true,
+                  fillColor: Color(0xfff2f2f3),
+                  isDense: false,
+                  contentPadding: EdgeInsets.symmetric(vertical:8,horizontal:12),
+                ),
+              ),
             ),
-            TextField(
-              controller: _l_nameController,
-              decoration: InputDecoration(labelText: 'Last Name'),
+
+            Padding(
+              padding:EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child: TextField(
+                controller: _l_nameController,
+                obscureText: false,
+                textAlign: TextAlign.start,
+                maxLines: 1,
+                style: TextStyle(
+                  fontWeight:FontWeight.w400,
+                  fontStyle:FontStyle.normal,
+                  fontSize:14,
+                  color:Color(0xff000000),
+                ),
+
+                decoration: InputDecoration(
+                  disabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Color(0xff04a9fd),
+                      width:1
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Color(0xff04a9fd),
+                      width:1
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color:Color(0xff04a9fd),
+                      width:1
+                    ),
+                  ),
+                  hintText: "Last Name",
+                  hintStyle: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 14,
+                    color:Color(0xff000000),
+                  ),
+                  filled: true,
+                  fillColor: Color(0Xfff2f2f3),
+                  isDense: false,
+                  contentPadding: EdgeInsets.symmetric(vertical: 8,horizontal:12),
+                ),
+              ),
             ),
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child:TextField(
+                controller: _emailController,
+                obscureText: false,
+                textAlign: TextAlign.start,
+                maxLines: 1,
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                  fontSize: 14,
+                  color:Color(0xff000000),
+                ),
+
+                decoration: InputDecoration(
+                  disabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide:BorderSide(
+                      color: Color(0xff04a9fd),
+                      width: 1
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Color(0xff04a9fd),
+                      width:1
+                    ),
+                  ),
+                  enabledBorder:OutlineInputBorder(
+                    borderRadius:BorderRadius.circular(10.0),
+                    borderSide:BorderSide(
+                      color: Color(0xff04a9fd),
+                      width:1
+                    ),
+                  ),
+                  hintText:"Email",
+                  hintStyle:TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 14,
+                    color:Color(0Xff000000),
+                  ),
+                  filled:true,
+                  fillColor: Color(0Xfff2f2f3),
+                  isDense:false,
+                  contentPadding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                ),
+              ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _startQuiz(context),
-              child: Text('Start Quiz'),
+            MaterialButton(onPressed: () => _startQuiz(context),
+            color: Color(0xff01a9fe),
+            elevation: 10,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              side: BorderSide(color:Color(0xff01a7fc),width:1 ),
+            ),
+            padding:EdgeInsets.all(16),
+            child: Text("Start Quiz",style:TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              fontStyle: FontStyle.normal,
+            ),),
+            textColor: Color(0xff000000),
+            height: 40,
+            minWidth: 140,
             ),
           ],
         ),
       ),
+     ),
     );
   }
 }

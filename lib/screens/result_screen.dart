@@ -24,7 +24,25 @@ class ResultScreen extends StatelessWidget{
 
     //the layout of the screen
     return Scaffold(
-      appBar: AppBar(title: Text('Quiz Result'),),
+      backgroundColor: Color(0xffffffff),
+      appBar: AppBar(
+        elevation: 4,
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        backgroundColor:Color(0xff01a8fe) ,
+        shape:RoundedRectangleBorder(
+          borderRadius: BorderRadius.zero,
+        ),
+        title: Text(
+          'Quiz Result',
+          style:TextStyle(
+            fontWeight: FontWeight.w500,
+            fontStyle: FontStyle.normal,
+            fontSize: 17,
+            color: Color(0xff000000),
+          ),
+          ),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -33,12 +51,7 @@ class ResultScreen extends StatelessWidget{
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Name : ${user.f_name} ${user.l_name}',
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Email : ${user.email}',
+                '${user.f_name} ${user.l_name}',
                 style: TextStyle(fontSize: 20),
               ),
               SizedBox(height:10),
@@ -48,7 +61,7 @@ class ResultScreen extends StatelessWidget{
               ),
               SizedBox(height: 10),
               Text(
-                'Date: ${DateFormat('yyyy-MM-dd').format(DateTime.now())}',
+                '${DateFormat('yyyy-MM-dd').format(DateTime.now())}',
                 style: TextStyle(fontSize: 20),
               ),
               SizedBox(height: 20),
@@ -62,7 +75,7 @@ class ResultScreen extends StatelessWidget{
               ),
               SizedBox(height: 20),
               Text(
-                'Percentage: ${pourcentage.toStringAsFixed(2)}%',
+                '${pourcentage.toStringAsFixed(2)}%',
                 style: TextStyle(fontSize: 20),
               ),
             ]

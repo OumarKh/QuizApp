@@ -58,11 +58,16 @@ class _QuestionScreenState extends State<questionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quiz'),
+        automaticallyImplyLeading: false,
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Time: $_secondsRemaining'),
+            child: Text('Time: $_secondsRemaining sec',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+              color :Color(0xff000000),
+            ),),
           ),
         ],
       ),
@@ -73,7 +78,8 @@ class _QuestionScreenState extends State<questionScreen> {
           children: [
             Text(
               widget.question.question,
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20,
+              fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 20),
             Column(
@@ -81,7 +87,13 @@ class _QuestionScreenState extends State<questionScreen> {
               children: widget.question.options
                   .asMap()
                   .entries
-                  .map((entry) => _buildOptionButton(entry.key, entry.value))
+                  .map((entry) =>Padding(
+                    padding: EdgeInsets.fromLTRB(20,0,20,20),
+                    child: _buildOptionButton(
+                      entry.key,
+                      entry.value
+            ),
+          ))
                   .toList(),
             ),
           ],
@@ -90,7 +102,7 @@ class _QuestionScreenState extends State<questionScreen> {
     );
   }
 
-  Widget _buildOptionButton(int index, String option) {
+   Widget _buildOptionButton(int index, String option) {
     return ElevatedButton(
       onPressed: () {
         // Stop the timer when the user selects an option
@@ -98,7 +110,11 @@ class _QuestionScreenState extends State<questionScreen> {
         // Pass the selected option index to the callback function
         widget.onOptionSelected(index);
       },
-      child: Text(option),
+      child: Text(option,
+      style: TextStyle(
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.w400,
+      ),),
     );
   }
 }
